@@ -1,0 +1,25 @@
+{
+  "name": "react-svg-sprite-icon",
+  "version": "0.0.1",
+  "description": "A React icon component that generates an SVG sprite on the fly",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "svg",
+    "icon",
+    "sprite",
+    "symbol"
+  ],
+  "author": "Gustaf Zetterlund <gustaf.zetterlund@nordnet.se>",
+  "license": "MIT",
+  "dependencies": {
+    "classnames": "^2.2.3",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-prop-types": "^0.3.0",
+    "react-pure-render": "^1.0.2"
+  }
+}
