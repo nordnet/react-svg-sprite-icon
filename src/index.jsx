@@ -9,13 +9,12 @@ class Icon extends PureComponent {
   constructor(props) {
     super(props);
 
-    if (!document.querySelector('svg#svg-icon-container')) this.createSvgIconContainer();
+    if (!document.querySelector(`svg#${ props.spriteId }`)) this.createSvgSprite();
   }
 
-  createSvgIconContainer() {
+  createSvgSprite() {
     const attributes = [
-      ['id', 'svg-icon-container'],
-      ['xmlns', 'http://www.w3.org/2000/svg'],
+      ['id', this.props.spriteId],
       ['style', 'display: none;'],
     ];
 
@@ -28,53 +27,46 @@ class Icon extends PureComponent {
   }
 
   appendIconSymbol(id, icon) {
-    const attributes = [
-      ['id', id],
-      ['viewBox', icon.viewBox],
-    ];
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.innerHTML = icon;
 
-    const symbol = document.createElementNS('http://www.w3.org/2000/svg', 'symbol');
-    symbol.innerHTML = icon.svg;
-
-    attributes.forEach((attribute) => {
-      symbol.setAttribute(attribute[0], attribute[1]);
-    });
+    const symbol = svg.firstChild;
+    symbol.setAttribute('id', id);
+    symbol.removeAttribute('xmlns'); // TODO: This should probably be done in the loader
 
     document.querySelector('svg#svg-icon-container').appendChild(symbol);
   }
 
-  constructUniqueId(type, fill, stroke, strokeWidth) {
-    let id = `icon_${ kebabCase(type) }`;
+  constructId(attributes) {
+    const attributesMap = ['fill', 'stroke', 'strokeWidth'];
     const invalidCharacters = /[|&;$%@#"<>()+,]/g;
-    if (fill) id = id + `_fill-${ fill.replace(invalidCharacters, '').replace(/\s/g, '-') }`;
-    if (stroke) id = id + `_stroke-${ stroke.replace(invalidCharacters, '').replace(/\s/g, '-') }`;
-    if (strokeWidth) id = id + `_stroke-width-${ strokeWidth }`;
+
+    const id = attributesMap.reduce((string, attribute) => {
+      const value = attributes[attribute];
+
+      if (value) {
+        return `${ string }_${ kebabCase(attribute) }-${ value.replace(invalidCharacters, '').replace(/\s/g, '-') }`;
+      }
+
+      return string;
+    }, `icon_${ kebabCase(attributes.name) }`);
 
     return id.toLowerCase();
   }
 
   render() {
-    const { type, fill, stroke, strokeWidth, width, height, componentClass: ComponentClass } = this.props;
-    const classes = classNames('icon', `icon--${ kebabCase(type) }`, this.props.className);
-    const uniqueId = this.constructUniqueId(type, fill, stroke, strokeWidth);
+    const { name, svg, fill, stroke, strokeWidth, width, height, componentClass: ComponentClass } = this.props;
+    const classes = classNames('icon', `icon--${ kebabCase(name) }`, this.props.className);
+    const id = this.constructId(name, fill, stroke, strokeWidth);
+    const icon = svg({ rootElement: 'symbol', fill, stroke, strokeWidth });
 
-    if (!this.icons[camelCase(type)]) {
-      console.log(`${ type } icon could not be found`);
-      return null;
-    }
-
-    let icon = {};
-
-    if (!document.querySelector(`svg#svg-icon-container>symbol#${uniqueId}`)) {
-      icon = this.icons[camelCase(type)](fill, stroke, strokeWidth);
-      this.appendIconSymbol(uniqueId, icon);
-    } else {
-      icon = this.icons[camelCase(type)]();
+    if (!document.querySelector(`svg#svg-icon-container>symbol#${ id }`)) {
+      this.appendIconSymbol(id, icon.data);
     }
 
     const styles = Object.assign({
-      width: `${ (width || icon.width) / 10 }rem`,
-      height: `${ (height || icon.height) / 10 }rem`,
+      width: `${ (width || icon.info.width) / 10 }rem`,
+      height: `${ (height || icon.info.height) / 10 }rem`,
     }, this.props.style);
 
     return (
@@ -82,7 +74,7 @@ class Icon extends PureComponent {
         style={ styles }
         className={ classes }
         dangerouslySetInnerHTML={{
-          __html: `<svg><use xlink:href="#${ uniqueId }" /></svg>`,
+          __html: `<svg><use xlink:href="#${ id }" /></svg>`,
         }}
       />
     );
@@ -92,7 +84,7 @@ class Icon extends PureComponent {
 Icon.propTypes = {
   children: React.PropTypes.node,
   className: React.PropTypes.string,
-  type: React.PropTypes.string,
+  spriteId: React.PropTypes.string,
   fill: React.PropTypes.string,
   stroke: React.PropTypes.string,
   strokeWidth: React.PropTypes.number,
@@ -100,11 +92,13 @@ Icon.propTypes = {
   height: React.PropTypes.number,
   style: React.PropTypes.object,
   componentClass: elementType,
+  svg: React.PropTypes.function,
 };
 
 Icon.defaultProps = {
   componentClass: 'span',
   style: {},
+  spriteId: 'svg-icon-container',
 };
 
 export default Icon;
