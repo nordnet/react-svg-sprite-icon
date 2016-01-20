@@ -1,6 +1,4 @@
 function createSvgSprite(spriteId) {
-  if (document.querySelector(`svg#${ spriteId }`)) return;
-
   const attributes = [
     ['id', spriteId],
     ['style', 'display: none;'],

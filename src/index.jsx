@@ -18,8 +18,32 @@ class Icon extends PureComponent {
       icon: svg({ rootElement: 'symbol', fill, stroke, strokeWidth }),
     };
 
-    createSvgSprite(props.spriteId);
-    appendIconSymbol(this.state.id, this.state.icon.data);
+    if (!document.querySelector(`svg#${ props.spriteId }`)) {
+      createSvgSprite(props.spriteId);
+    }
+
+    if (!document.querySelector(`svg#${ props.spriteId }>symbol#${ this.state.id }`)) {
+      appendIconSymbol(this.state.id, this.state.icon.data, props.spriteId);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { name, fill, stroke, strokeWidth } = this.props;
+    const { name: nextName, svg: nextSvg, fill: nextFill, stroke: nextStroke, strokeWidth: nextStrokeWidth } = nextProps;
+    let state = {};
+
+    if (nextName !== name) {
+      state = Object.assign(state, {
+        id: constructId(name, fill, stroke, strokeWidth),
+        className: `icon--${ kebabCase(name) }`,
+      });
+    }
+
+    if (nextFill !== fill || nextStroke !== stroke || nextStrokeWidth !== strokeWidth) {
+      state = Object.assign(state, {
+        icon: nextSvg({ rootElement: 'symbol', fill, stroke, strokeWidth }),
+      });
+    }
   }
 
   render() {
@@ -38,7 +62,6 @@ class Icon extends PureComponent {
 }
 
 Icon.propTypes = {
-  children: React.PropTypes.node,
   className: React.PropTypes.string,
   spriteId: React.PropTypes.string,
   fill: React.PropTypes.string,
