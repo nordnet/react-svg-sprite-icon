@@ -43,7 +43,11 @@ class Icon extends PureComponent {
       state = Object.assign(state, {
         icon: nextSvg({ rootElement: 'symbol', fill, stroke, strokeWidth }),
       });
+
+      appendIconSymbol(state.id, state.icon.data, this.props.spriteId);
     }
+
+    this.setState(state);
   }
 
   render() {

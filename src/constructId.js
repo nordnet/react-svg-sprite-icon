@@ -4,17 +4,13 @@ function constructId(attributes) {
   const attributesMap = ['fill', 'stroke', 'strokeWidth'];
   const invalidCharacters = /[|&;$%@#"<>()+,]/g;
 
-  const id = attributesMap.reduce((string, attribute) => {
+  const id = attributesMap.map(attribute => {
     const value = attributes[attribute];
+    if (!value) return undefined;
+    return `_${ kebabCase(attribute) }-${ value.replace(invalidCharacters, '').replace(/\s/g, '-') }`;
+  }).filter(value => !!value);
 
-    if (value) {
-      return `${ string }_${ kebabCase(attribute) }-${ value.replace(invalidCharacters, '').replace(/\s/g, '-') }`;
-    }
-
-    return string;
-  }, `icon_${ kebabCase(attributes.name) }`);
-
-  return id.toLowerCase();
+  return `icon_${ kebabCase(attributes.name) }${ id.join('') }`.toLowerCase();
 }
 
 export default constructId;

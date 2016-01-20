@@ -1,12 +1,12 @@
 function createSvgSprite(spriteId) {
-  const attributes = [
-    ['id', spriteId],
-    ['style', 'display: none;'],
-  ];
+  const attributes = {
+    id: spriteId,
+    style: 'display: none;',
+  };
 
   const svgIconContainer = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  attributes.forEach((attribute) => {
-    svgIconContainer.setAttribute(attribute[0], attribute[1]);
+  Object.keys(attributes).forEach(key => {
+    svgIconContainer.setAttribute(key, attributes[key]);
   });
 
   document.body.appendChild(svgIconContainer);
