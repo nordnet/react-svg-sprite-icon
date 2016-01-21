@@ -13,7 +13,7 @@ class Icon extends PureComponent {
     const { name, svg, fill, stroke, strokeWidth } = props;
 
     this.state = {
-      id: constructId(name, fill, stroke, strokeWidth),
+      id: constructId({ name, fill, stroke, strokeWidth }),
       className: `icon--${ kebabCase(name) }`,
       icon: svg({ rootElement: 'symbol', fill, stroke, strokeWidth }),
     };
