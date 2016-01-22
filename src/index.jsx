@@ -34,7 +34,7 @@ class Icon extends PureComponent {
 
     if (nextName !== name) {
       state = Object.assign(state, {
-        id: constructId(name, fill, stroke, strokeWidth),
+        id: constructId({ name, fill, stroke, strokeWidth }),
         className: `icon--${ kebabCase(name) }`,
       });
     }
@@ -59,23 +59,28 @@ class Icon extends PureComponent {
       height: `${ (height || this.state.icon.info.height) / 10 }rem`,
     }, this.props.style);
 
-    const html = { __html: `<svg><use xlink:href="#${ this.state.id }" /></svg>` };
-
-    return <ComponentClass className={ classes } style={ styles } dangerouslySetInnerHTML={ html } />;
+    return (
+      <ComponentClass className={ classes } style={ styles }>
+        <svg>
+          <use xlinkHref={ `#${ this.state.id }` } />
+        </svg>
+      </ComponentClass>
+    );
   }
 }
 
 Icon.propTypes = {
-  className: React.PropTypes.string,
-  spriteId: React.PropTypes.string,
+  name: React.PropTypes.string.isRequired,
+  svg: React.PropTypes.func.isRequired,
   fill: React.PropTypes.string,
   stroke: React.PropTypes.string,
   strokeWidth: React.PropTypes.number,
   width: React.PropTypes.number,
   height: React.PropTypes.number,
   style: React.PropTypes.object,
+  className: React.PropTypes.string,
+  spriteId: React.PropTypes.string,
   componentClass: elementType,
-  svg: React.PropTypes.function,
 };
 
 Icon.defaultProps = {
