@@ -67,7 +67,7 @@ class IconClass extends PureComponent {
 
     return (
       <ComponentClass className={ classes } style={ styles }>
-        <svg style={{ width: '100%', height: '100%' }}>
+        <svg style={{ display: 'block', width: '100%', height: '100%' }}>
           <use xlinkHref={ `#${ this.state.id }` } />
         </svg>
       </ComponentClass>
