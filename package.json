@@ -6,11 +6,11 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "babel ./src -d ./dist",
-    "test": "mocha --compilers js:babel-core/register",
+    "test": "mocha",
     "lint": "eslint --ext=.jsx --ext=.js ./src",
-    "prepush": "npm run lint && npm run test",
-    "prepublish": "npm run lint && npm run test && npm run build",
-    "postpublish": "rimraf dist && git push --follow-tags"
+    "prepush": "npm-run-all lint test",
+    "prepublish": "npm-run-all lint test build",
+    "postpublish": "npm-run-all clean && git push --follow-tags"
   },
   "keywords": [
     "react",
@@ -38,9 +38,11 @@
     "enzyme": "^1.4.0",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^4.0.0",
+    "eslint-config-nordnet": "^1.1.1",
     "eslint-plugin-react": "^3.16.1",
     "husky": "^0.10.2",
     "mocha": "^2.3.4",
+    "npm-run-all": "^1.5.0",
     "react-addons-test-utils": "^0.14.6"
   }
 }
