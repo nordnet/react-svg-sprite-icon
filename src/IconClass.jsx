@@ -61,6 +61,7 @@ class IconClass extends PureComponent {
     const classes = classNames('icon', this.state.className, this.props.className);
 
     const styles = Object.assign({
+      display: 'inline-block',
       width: `${ (width || this.state.icon.info.width) / 10 }rem`,
       height: `${ (height || this.state.icon.info.height) / 10 }rem`,
     }, this.props.style);

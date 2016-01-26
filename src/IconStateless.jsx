@@ -23,6 +23,7 @@ function IconStateless(props) {
   const icon = svg({ rootElement: 'symbol', fill, stroke, strokeWidth });
 
   const styles = Object.assign({
+    display: 'inline-block',
     width: `${ (width || icon.info.width) / 10 }rem`,
     height: `${ (height || icon.info.height) / 10 }rem`,
   }, props.style);
