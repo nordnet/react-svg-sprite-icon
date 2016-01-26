@@ -2,6 +2,10 @@
 
 > A React icon component that generates a SVG sprite on the fly
 
+[![NPM version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Dependency Status][depstat-image]][depstat-url]
+
 ## Installation
 
 `npm install --save react-svg-sprite-icon`
@@ -70,3 +74,13 @@ The type of element of the root icon element, a `span` by default.
 This open source project released by Nordnet is licensed under the MIT license.
 
 MIT (http://www.opensource.org/licenses/mit-license.php)
+
+
+[npm-url]: https://npmjs.org/package/react-svg-sprite-icon
+[npm-image]: https://img.shields.io/npm/v/react-svg-sprite-icon.svg
+
+[travis-url]: https://travis-ci.org/nordnet/react-svg-sprite-icon
+[travis-image]: https://travis-ci.org/nordnet/react-svg-sprite-icon.svg?branch=master
+
+[depstat-url]: https://david-dm.org/nordnet/react-svg-sprite-icon
+[depstat-image]: https://david-dm.org/nordnet/react-svg-sprite-icon.svg
