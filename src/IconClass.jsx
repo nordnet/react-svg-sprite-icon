@@ -7,7 +7,7 @@ import createSvgSprite from './createSvgSprite';
 import appendIconSymbol from './appendIconSymbol';
 import constructId from './constructId';
 
-class Icon extends PureComponent {
+class IconClass extends PureComponent {
   constructor(props) {
     super(props);
     const { name, svg, fill, stroke, strokeWidth } = props;
@@ -69,7 +69,7 @@ class Icon extends PureComponent {
   }
 }
 
-Icon.propTypes = {
+IconClass.propTypes = {
   name: React.PropTypes.string.isRequired,
   svg: React.PropTypes.func.isRequired,
   fill: React.PropTypes.string,
@@ -83,10 +83,10 @@ Icon.propTypes = {
   componentClass: elementType,
 };
 
-Icon.defaultProps = {
+IconClass.defaultProps = {
   componentClass: 'span',
   style: {},
   spriteId: 'svg-icon-container',
 };
 
-export default Icon;
+export default IconClass;

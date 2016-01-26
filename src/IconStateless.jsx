@@ -6,7 +6,7 @@ import createSvgSprite from './createSvgSprite';
 import appendIconSymbol from './appendIconSymbol';
 import constructId from './constructId';
 
-function statelessIcon(props) {
+function IconStateless(props) {
   const { name, svg, fill, stroke, strokeWidth, width, height, spriteId, componentClass: ComponentClass } = props;
   const classes = classNames('icon', `icon--${ kebabCase(name) }`, props.className);
   const id = constructId({ name, fill, stroke, strokeWidth });
@@ -34,7 +34,7 @@ function statelessIcon(props) {
   );
 }
 
-statelessIcon.propTypes = {
+IconStateless.propTypes = {
   name: React.PropTypes.string.isRequired,
   svg: React.PropTypes.func.isRequired,
   fill: React.PropTypes.string,
@@ -48,10 +48,10 @@ statelessIcon.propTypes = {
   componentClass: elementType,
 };
 
-statelessIcon.defaultProps = {
+IconStateless.defaultProps = {
   componentClass: 'span',
   style: {},
   spriteId: 'svg-icon-container',
 };
 
-export default statelessIcon;
+export default IconStateless;
