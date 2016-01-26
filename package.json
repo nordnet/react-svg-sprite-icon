@@ -10,7 +10,7 @@
     "lint": "eslint --ext=.jsx --ext=.js ./src",
     "prepush": "npm-run-all lint test",
     "prepublish": "npm-run-all lint test build",
-    "postpublish": "npm-run-all clean && git push --follow-tags"
+    "postpublish": "npm run clean && git push --follow-tags"
   },
   "keywords": [
     "react",

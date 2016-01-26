@@ -2,7 +2,6 @@ import kebabCase from 'lodash.kebabcase';
 
 function constructId(attributes) {
   const attributesMap = ['fill', 'stroke', 'strokeWidth'];
-  const invalidCharacters = /[|&;$%@#"<>()+,]/g;
 
   const modifiers = attributesMap
     .map(mapAttributes(attributes))
@@ -20,9 +19,9 @@ function mapAttributes(attributes) {
     }
 
     return `_${ kebabCase(attribute) }-${ value
-      .replace(invalidCharacters, '')
+      .replace(/[|&;$%@#"<>()+,]/g, '')
       .replace(/\s/g, '-') }`;
-  }
+  };
 }
 
 export default constructId;
