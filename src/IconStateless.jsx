@@ -7,7 +7,17 @@ import appendIconSymbol from './appendIconSymbol';
 import constructId from './constructId';
 
 function IconStateless(props) {
-  const { name, svg, fill, stroke, strokeWidth, width, height, spriteId, componentClass: ComponentClass } = props;
+  const {
+    name,
+    svg,
+    fill,
+    stroke,
+    strokeWidth,
+    width,
+    height,
+    spriteId,
+    componentClass: ComponentClass,
+  } = props;
   const classes = classNames('icon', `icon--${ kebabCase(name) }`, props.className);
   const id = constructId({ name, fill, stroke, strokeWidth });
   const icon = svg({ rootElement: 'symbol', fill, stroke, strokeWidth });

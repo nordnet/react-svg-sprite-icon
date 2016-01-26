@@ -7,7 +7,9 @@ function constructId(attributes) {
   const modifiers = attributesMap.map(attribute => {
     const value = attributes[attribute];
     if (!value) return undefined;
-    return `_${ kebabCase(attribute) }-${ value.replace(invalidCharacters, '').replace(/\s/g, '-') }`;
+    return `_${ kebabCase(attribute) }-${ value
+      .replace(invalidCharacters, '')
+      .replace(/\s/g, '-') }`;
   }).filter(value => !!value);
 
   return `icon_${ kebabCase(attributes.name) }${ modifiers.join('') }`.toLowerCase();

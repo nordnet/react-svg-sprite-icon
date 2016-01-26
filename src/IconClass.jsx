@@ -29,7 +29,13 @@ class IconClass extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     const { name, fill, stroke, strokeWidth } = this.props;
-    const { name: nextName, svg: nextSvg, fill: nextFill, stroke: nextStroke, strokeWidth: nextStrokeWidth } = nextProps;
+    const {
+      name: nextName,
+      svg: nextSvg,
+      fill: nextFill,
+      stroke: nextStroke,
+      strokeWidth: nextStrokeWidth,
+    } = nextProps;
     let state = {};
 
     if (nextName !== name) {
