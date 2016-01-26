@@ -37,7 +37,7 @@ function IconStateless(props) {
 
   return (
     <ComponentClass className={ classes } style={ styles }>
-      <svg>
+      <svg style={{ width: '100%', height: '100%' }}>
         <use xlinkHref={ `#${ id }` } />
       </svg>
     </ComponentClass>
