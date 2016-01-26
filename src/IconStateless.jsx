@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { elementType } from 'react-prop-types';
-import kebabCase from 'lodash/string/kebabCase';
+import kebabCase from 'lodash.kebabcase';
 import createSvgSprite from './createSvgSprite';
 import appendIconSymbol from './appendIconSymbol';
 import constructId from './constructId';

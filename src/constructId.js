@@ -1,4 +1,4 @@
-import kebabCase from 'lodash/string/kebabCase';
+import kebabCase from 'lodash.kebabcase';
 
 function constructId(attributes) {
   const attributesMap = ['fill', 'stroke', 'strokeWidth'];
