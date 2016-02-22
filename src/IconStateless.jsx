@@ -28,11 +28,11 @@ function IconStateless(props) {
     height: `${ (height || icon.info.height) / 10 }rem`,
   }, props.style);
 
-  if (!document.querySelector(`svg#${ spriteId }`)) {
+  if (window && !document.querySelector(`svg#${ spriteId }`)) {
     createSvgSprite(spriteId);
   }
 
-  if (!document.querySelector(`svg#${ spriteId }>symbol#${ id }`)) {
+  if (window && !document.querySelector(`svg#${ spriteId }>symbol#${ id }`)) {
     appendIconSymbol(id, icon.data, spriteId);
   }
 

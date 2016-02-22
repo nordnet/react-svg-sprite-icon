@@ -18,11 +18,11 @@ class IconClass extends PureComponent {
       icon: svg({ rootElement: 'symbol', fill, stroke, strokeWidth }),
     };
 
-    if (!document.querySelector(`svg#${ props.spriteId }`)) {
+    if (window && !document.querySelector(`svg#${ props.spriteId }`)) {
       createSvgSprite(props.spriteId);
     }
 
-    if (!document.querySelector(`svg#${ props.spriteId }>symbol#${ this.state.id }`)) {
+    if (window && !document.querySelector(`svg#${ props.spriteId }>symbol#${ this.state.id }`)) {
       appendIconSymbol(this.state.id, this.state.icon.data, props.spriteId);
     }
   }
