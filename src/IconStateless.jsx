@@ -21,6 +21,7 @@ function IconStateless(props) {
   const classes = classNames('icon', `icon--${ kebabCase(name) }`, props.className);
   const id = constructId({ name, fill, stroke, strokeWidth });
   const icon = svg({ rootElement: 'symbol', fill, stroke, strokeWidth });
+  const isBrowser = !(typeof window === 'undefined');
 
   const styles = Object.assign({
     display: 'inline-block',
@@ -28,11 +29,11 @@ function IconStateless(props) {
     height: `${ (height || icon.info.height) / 10 }rem`,
   }, props.style);
 
-  if (window && !document.querySelector(`svg#${ spriteId }`)) {
+  if (isBrowser && !document.querySelector(`svg#${ spriteId }`)) {
     createSvgSprite(spriteId);
   }
 
-  if (window && !document.querySelector(`svg#${ spriteId }>symbol#${ id }`)) {
+  if (isBrowser && !document.querySelector(`svg#${ spriteId }>symbol#${ id }`)) {
     appendIconSymbol(id, icon.data, spriteId);
   }
 

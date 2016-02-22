@@ -16,13 +16,14 @@ class IconClass extends PureComponent {
       id: constructId({ name, fill, stroke, strokeWidth }),
       className: `icon--${ kebabCase(name) }`,
       icon: svg({ rootElement: 'symbol', fill, stroke, strokeWidth }),
+      isBrowser: !(typeof window === 'undefined'),
     };
 
-    if (window && !document.querySelector(`svg#${ props.spriteId }`)) {
+    if (this.state.isBrowser && !document.querySelector(`svg#${ props.spriteId }`)) {
       createSvgSprite(props.spriteId);
     }
 
-    if (window && !document.querySelector(`svg#${ props.spriteId }>symbol#${ this.state.id }`)) {
+    if (this.state.isBrowser && !document.querySelector(`svg#${ props.spriteId }>symbol#${ this.state.id }`)) {
       appendIconSymbol(this.state.id, this.state.icon.data, props.spriteId);
     }
   }
@@ -50,7 +51,9 @@ class IconClass extends PureComponent {
         icon: nextSvg({ rootElement: 'symbol', fill, stroke, strokeWidth }),
       });
 
-      appendIconSymbol(state.id, state.icon.data, this.props.spriteId);
+      if (this.state.isBrowser) {
+        appendIconSymbol(state.id, state.icon.data, this.props.spriteId);
+      }
     }
 
     this.setState(state);
