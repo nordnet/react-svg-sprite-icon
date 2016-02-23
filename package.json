@@ -1,6 +1,6 @@
 {
   "name": "react-svg-sprite-icon",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A React icon component that generates a SVG sprite on the fly",
   "main": "dist/index.js",
   "scripts": {
