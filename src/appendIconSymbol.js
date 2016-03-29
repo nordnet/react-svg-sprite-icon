@@ -1,3 +1,5 @@
+import 'innersvg-polyfill';
+
 function appendIconSymbol(id, icon, spriteId) {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.innerHTML = icon;

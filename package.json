@@ -20,9 +20,14 @@
     "symbol"
   ],
   "author": "Gustaf Zetterlund <gustaf.zetterlund@nordnet.se>",
+  "repository": "nordnet/react-svg-sprite-icon",
+  "bugs": {
+    "url": "https://github.com/nordnet/react-svg-sprite-icon/issues"
+  },
   "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.3",
+    "innersvg-polyfill": "0.0.2",
     "lodash.assign": "^4.0.3",
     "lodash.kebabcase": "^3.1.1",
     "react": "^0.14.0",
