@@ -1,4 +1,6 @@
-import 'innersvg-polyfill';
+if (!(typeof window === 'undefined')) {
+  require('innersvg-polyfill');
+}
 
 function appendIconSymbol(id, icon, spriteId) {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');

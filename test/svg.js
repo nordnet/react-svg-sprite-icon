@@ -22,4 +22,4 @@ module.exports = function(options) {
     result.info = info;
   }
   return result;
-}
+};
