@@ -1,4 +1,5 @@
-if (!(typeof window === 'undefined')) {
+// Only polyfill SVG.innerHTML if needed
+if (!(typeof window === 'undefined') && !('innerHTML' in SVGElement.prototype)) {
   require('innersvg-polyfill');
 }
 
