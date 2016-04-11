@@ -1,5 +1,6 @@
 // Only polyfill SVG.innerHTML if needed
-if (!(typeof window === 'undefined') && !('innerHTML' in SVGElement.prototype)) {
+// SVGElement not implemented in jsdom - https://github.com/tmpvar/jsdom/issues/1423
+if (!(typeof window === 'undefined') && !(typeof SVGElement === 'undefined') && !('innerHTML' in SVGElement.prototype)) {
   require('innersvg-polyfill');
 }
 

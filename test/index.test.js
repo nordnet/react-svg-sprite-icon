@@ -1,10 +1,10 @@
 import React from 'react';
-import { describeWithDOM, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { assert } from 'chai';
 import svg from './svg';
 import { IconClass, IconStateless } from '../src';
 
-describeWithDOM('<IconClass />', () => {
+describe('<IconClass />', () => {
   let icon;
 
   beforeEach(() => icon = shallow(<IconClass name="checkmark" svg={ svg } />));
@@ -18,7 +18,7 @@ describeWithDOM('<IconClass />', () => {
     () => assert.ok(document.querySelector('#svg-icon-container')));
 });
 
-describeWithDOM('<IconStateless />', () => {
+describe('<IconStateless />', () => {
   let icon;
 
   beforeEach(() => icon = shallow(<IconStateless name="checkmark" svg={ svg } />));
