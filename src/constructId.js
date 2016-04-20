@@ -18,6 +18,10 @@ function mapAttributes(attributes) {
       return undefined;
     }
 
+    if (typeof value !== 'string') {
+      return value;
+    }
+
     return `_${ kebabCase(attribute) }-${ value
       .replace(/[|&;$%@#"<>()+,]/g, '')
       .replace(/\s/g, '-') }`;
