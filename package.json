@@ -25,12 +25,14 @@
     "url": "https://github.com/nordnet/react-svg-sprite-icon/issues"
   },
   "license": "MIT",
+  "peerDependencies": {
+    "react": "0.14.x || 15.x",
+    "react-dom": "0.14.x || 15.x"
+  },
   "dependencies": {
     "classnames": "^2.2.3",
     "lodash.assign": "^4.0.3",
     "lodash.kebabcase": "^3.1.1",
-    "react": "^0.14.0 || ^15.0.1",
-    "react-dom": "^0.14.0 || ^15.0.1",
     "react-prop-types": "^0.3.0",
     "react-pure-render": "^1.0.2"
   },
@@ -49,6 +51,8 @@
     "jsdom": "^8.3.1",
     "mocha": "^2.3.4",
     "npm-run-all": "^1.5.0",
-    "react-addons-test-utils": "^0.14.6 || ^15.0.1"
+    "react": "^15.0.1",
+    "react-addons-test-utils": "^15.0.1",
+    "react-dom": "^15.0.1"
   }
 }
