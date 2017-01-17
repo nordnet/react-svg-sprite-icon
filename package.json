@@ -27,7 +27,6 @@
   "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.3",
-    "innersvg-polyfill": "0.0.2",
     "lodash.assign": "^4.0.3",
     "lodash.kebabcase": "^3.1.1",
     "react": "^0.14.0 || ^15.0.1",
