@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import { elementType } from 'react-prop-types';
 import kebabCase from 'lodash.kebabcase';
-import assign from 'lodash.assign';
 import createSvgSprite from './createSvgSprite';
 import appendIconSymbol from './appendIconSymbol';
 import constructId from './constructId';
@@ -24,7 +23,7 @@ function IconStateless(props) {
   const icon = svg({ rootElement: 'symbol', fill, stroke, strokeWidth });
   const isBrowser = !(typeof window === 'undefined');
 
-  const styles = assign({
+  const styles = Object.assign({
     display: 'inline-block',
     width: `${ (width || icon.info.width) / 10 }rem`,
     height: `${ (height || icon.info.height) / 10 }rem`,

@@ -1,14 +1,12 @@
 import React from 'react';
-import PureComponent from 'react-pure-render/component';
 import classNames from 'classnames';
 import { elementType } from 'react-prop-types';
 import kebabCase from 'lodash.kebabcase';
-import assign from 'lodash.assign';
 import createSvgSprite from './createSvgSprite';
 import appendIconSymbol from './appendIconSymbol';
 import constructId from './constructId';
 
-class IconClass extends PureComponent {
+class IconClass extends React.PureComponent {
   constructor(props) {
     super(props);
     const { name, svg, fill, stroke, strokeWidth } = props;
@@ -41,14 +39,14 @@ class IconClass extends PureComponent {
     let state = {};
 
     if (nextName !== name) {
-      state = assign(state, {
+      state = Object.assign(state, {
         id: constructId({ name, fill, stroke, strokeWidth }),
         className: `icon--${ kebabCase(name) }`,
       });
     }
 
     if (nextFill !== fill || nextStroke !== stroke || nextStrokeWidth !== strokeWidth) {
-      state = assign(state, {
+      state = Object.assign(state, {
         icon: nextSvg({ rootElement: 'symbol', fill, stroke, strokeWidth }),
       });
 
@@ -64,7 +62,7 @@ class IconClass extends PureComponent {
     const { width, height, componentClass: ComponentClass } = this.props;
     const classes = classNames('icon', this.state.className, this.props.className);
 
-    const styles = assign({
+    const styles = Object.assign({
       display: 'inline-block',
       width: `${ (width || this.state.icon.info.width) / 10 }rem`,
       height: `${ (height || this.state.icon.info.height) / 10 }rem`,
